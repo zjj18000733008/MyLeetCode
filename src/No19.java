@@ -94,4 +94,25 @@ public class No19 {
         No19 no = new No19();
         no.removeNthFromEnd_3(n1,2);
     }
+
+    public ListNode removeNthFromEnd_4(ListNode head,int n){
+
+        ListNode root = new ListNode(0);
+        root.next=head;
+        ListNode fast=root;
+        ListNode slow=root;
+
+        while(n-->0){
+            fast=fast.next;
+        }
+
+        while (fast.next != null) {
+            fast=fast.next;
+            slow=slow.next;
+        }
+
+        slow.next=slow.next.next;
+
+        return root.next;
+    }
 }

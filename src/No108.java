@@ -51,4 +51,21 @@ public class No108 {
         TreeNode root = no.sortedArrayToBST(arr);
     }
 
+    public TreeNode sortedArrayToBST2(int[] nums) {
+
+        int mid=(nums.length - 1) / 2;
+        TreeNode parent = new TreeNode(mid);
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i == mid) {
+                continue;
+            }
+            if (nums[i] < parent.val) {
+
+            }
+        }
+
+        return null;
+    }
+
 }

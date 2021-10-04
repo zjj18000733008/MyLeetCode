@@ -16,6 +16,27 @@ public class No111 {
         return Math.min(root.left==null?0:minDepth(root.left),root.right==null?0:minDepth(root.right))+1;
     }
 
+    /**
+     * 执行用时：5 ms, 在所有 Java 提交中击败了71.52% 的用户
+     * 内存消耗：58.9 MB, 在所有 Java 提交中击败了22.06% 的用户
+     * @param root
+     * @return
+     */
+    public int minDepth2(TreeNode root){
+        if (root == null) {
+            return 0;
+        }
+        if (root.left == null && root.right == null) {
+            return 1;
+        }else if (root.left != null && root.right != null) {
+            return Math.min(minDepth2(root.left), minDepth2(root.right))+1;
+        } else if (root.left != null) {
+            return minDepth2(root.left)+1;
+        }else{
+            return minDepth2(root.right)+1;
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode n1 = new TreeNode(3);
         TreeNode n2 = new TreeNode(9);

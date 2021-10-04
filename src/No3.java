@@ -1,4 +1,9 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author JJ
@@ -58,5 +63,46 @@ public class No3 {
 //        int i = no.lengthOfLongestSubstring_2("pwwkew");
         int i = no.lengthOfLongestSubstring_2("abcabcbb");
         System.out.println(i);
+    }
+
+    /**
+     * 执行用时：6 ms, 在所有 Java 提交中击败了78.71% 的用户
+     * 内存消耗：38.4 MB, 在所有 Java 提交中击败了68.90% 的用
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring3(String s) {
+
+        Set set = new HashSet<Character>();
+
+        int idx=0;
+        int max=0;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            if (i != 0) {
+                set.remove(s.charAt(i-1));
+            }
+
+            while (idx<s.length() && !set.contains(s.charAt(idx))) {
+                set.add(s.charAt(idx));
+                idx++;
+            }
+            max=Math.max(max, idx-i);
+        }
+
+        return max;
+    }
+
+    @Test
+    public void test(){
+        int ans = lengthOfLongestSubstring3("abcabcbb");
+        Assert.assertEquals(3, ans);
+        int ans2 = lengthOfLongestSubstring3("aa");
+        Assert.assertEquals(1, ans2);
+        int ans3 = lengthOfLongestSubstring3("");
+        Assert.assertEquals(0, ans3);
+        int ans4 = lengthOfLongestSubstring3("pwwkew");
+        Assert.assertEquals(3, ans4);
     }
 }

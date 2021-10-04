@@ -33,9 +33,38 @@ public class No105 {
         System.out.println(treeNode);
     }
 
-//    private void func(int[] preorder,int[] inorder,int start ,int end,TreeNode root){
-//        if()
-//    }
+    /**
+     * 执行用时：15 ms, 在所有 Java 提交中击败了5.65% 的用户
+     * 内存消耗：87.3 MB, 在所有 Java 提交中击败了5.03% 的用户
+     * @param preorder
+     * @param inorder
+     * @return
+     */
+    public TreeNode buildTree2(int[] preorder, int[] inorder) {
+
+        if (preorder == null || preorder.length==0) {
+            return null;
+        }
+
+        TreeNode parent = new TreeNode(preorder[0]);
+
+        for (int i = 0; i < inorder.length; i++) {
+            if(inorder[i]==preorder[0]){
+                //找到左子节点
+                TreeNode left =
+                        buildTree2(Arrays.copyOfRange(preorder, 1, i + 1), Arrays.copyOfRange(inorder, 0, i));
+                //找到右子节点
+                TreeNode right = buildTree2(Arrays.copyOfRange(preorder, i + 1, preorder.length),
+                        Arrays.copyOfRange(inorder, i + 1,
+                                inorder.length));
+                parent.left=left;
+                parent.right=right;
+            }
+        }
+
+        return parent;
+    }
+
 }
 
 class No105_2 {

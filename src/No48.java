@@ -1,3 +1,5 @@
+import javax.xml.ws.soap.AddressingFeature;
+
 /**
  * @author JJ
  * @date 2020/8/22 - 21:25
@@ -18,6 +20,26 @@ public class No48 {
         for(int i=1;i<n;i++){
             for(int j=0;j<i;j++){
                 swap(matrix,i,j,j,i);
+            }
+        }
+    }
+
+    /**
+     * 执行用时：0 ms, 在所有 Java 提交中击败了100.00% 的用户
+     * 内存消耗：38.4 MB, 在所有 Java 提交中击败了72.20% 的用户
+     * @param matrix
+     */
+    public void rotate2(int[][] matrix){
+        int n=matrix.length;
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < n; j++) {
+                swap(matrix, i, j, n-1-i, j);
+            }
+        }
+
+        for (int i = 0; i < n-1; i++) {
+            for (int j = i+1; j < n; j++) {
+                swap(matrix, i, j, j, i);
             }
         }
     }

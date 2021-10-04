@@ -140,4 +140,12 @@ public class No5 {
 //        char[] arr = s.toCharArray();
 //
 //    }
+
+
+    public String longestPalindrome4(String s){
+
+
+
+        return null;
+    }
 }

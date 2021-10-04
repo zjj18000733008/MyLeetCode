@@ -13,7 +13,9 @@ public class No24 {
         ListNode pre=root;
         ListNode p1=head;
         ListNode p2=head.next;
-        if(p2==null)return head;
+        if(p2==null) {
+            return head;
+        }
         while(true){
             //交换
             p1.next=p2.next;
@@ -22,9 +24,11 @@ public class No24 {
 
             pre=p1;
             //如果链表只剩一个或不剩则结束循环
-            if(p1.next==null)break;
-            else if(p1.next.next==null)break;
-            else {
+            if(p1.next==null) {
+                break;
+            } else if(p1.next.next==null) {
+                break;
+            } else {
                 //否则p1,p2向后移
                 p2=p1.next.next;
                 p1=p1.next;

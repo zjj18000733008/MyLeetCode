@@ -6,7 +6,9 @@
 public class No104 {
 
     public int maxDepth(TreeNode root) {
-        if(root==null) return 0;
+        if(root==null) {
+            return 0;
+        }
         return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
     }
 
@@ -19,4 +21,5 @@ public class No104 {
         TreeNode n6 = new TreeNode(15);
         TreeNode n7 = new TreeNode(7);
     }
+
 }

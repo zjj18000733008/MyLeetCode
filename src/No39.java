@@ -70,6 +70,8 @@ public class No39 {
             System.out.println();
         }
     }
+
+
 }
 
 class No39_2 {
@@ -80,12 +82,12 @@ class No39_2 {
     //内存消耗：40.4 MB
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         // Arrays.sort(candidates);
-        backtrack(new ArrayList<Integer>(),0,target,candidates,0);
+        backtrack(new ArrayList<Integer>(), 0, target, candidates, 0);
         return lists;
     }
 
     private void backtrack(List<Integer> list, int sum, int target, int[] candidates, int start) {
-        if(target<0)return;
+        if (target < 0) return;
         if (sum > target) {
             return;
         } else if (sum == target) {
@@ -101,24 +103,25 @@ class No39_2 {
 
     public static void main(String[] args) {
         No39_2 no = new No39_2();
-        int[] arr={2,3,6,7};
+        int[] arr = {2, 3, 6, 7};
         List<List<Integer>> lists = no.combinationSum(arr, 7);
         for (List<Integer> list : lists) {
             for (Integer i : list) {
-                System.out.print(i+" ");
+                System.out.print(i + " ");
             }
             System.out.println();
         }
     }
 }
 
-class No39_3{
+class No39_3 {
     List<List<Integer>> lists = new ArrayList<>();
+
     //执行用时：4 ms, 在所有 Java 提交中击败了54.09% 的用户
     //内存消耗：40 MB, 在所有 Java 提交中击败了52.83% 的用户
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 //        Arrays.sort(candidates);
-        backtrack(new ArrayList<Integer>(),0,target,candidates,0);
+        backtrack(new ArrayList<Integer>(), 0, target, candidates, 0);
         return lists;
     }
 
@@ -132,8 +135,65 @@ class No39_3{
 
                 list.add(candidates[i]);
                 backtrack(list, sum + candidates[i], target, candidates, i);
-                list.remove(list.size()-1);
+                list.remove(list.size() - 1);
             }
+        }
+    }
+}
+
+class No39_4 {
+
+    List<List<Integer>> lists = new ArrayList<>();
+    boolean flag = false;
+
+    /**
+     * 执行用时：2 ms, 在所有 Java 提交中击败了99.92% 的用户
+     * 内存消耗：38.5 MB, 在所有 Java 提交中击败了81.99% 的用户
+     * @author JJ
+     * @date 2021/3/26 13:33
+     */
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
+        Arrays.sort(candidates);
+        backtrack(new ArrayList<>(), candidates, target, 0, 0);
+
+        return lists;
+    }
+
+    public void backtrack(List<Integer> list, int[] candidates, int target, int sum, int start) {
+        if (sum > target) {
+            flag = true;
+            return;
+        }
+        if (sum == target) {
+            flag = true;
+            lists.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = start; i < candidates.length; i++) {
+            list.add(candidates[i]);
+
+            backtrack(list, candidates, target, sum + candidates[i], i);
+
+            list.remove(list.size() - 1);
+
+            if(flag){//如果前面sum已经大于或等于target,就不再遍历了
+                flag=false;
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        No39_4 no = new No39_4();
+        int[] arr = {2, 3, 6, 7};
+        List<List<Integer>> lists = no.combinationSum(arr, 7);
+        for (List<Integer> list : lists) {
+            for (Integer i : list) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
         }
     }
 }

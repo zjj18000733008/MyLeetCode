@@ -20,4 +20,8 @@ public class No160 {
         }
         return pa;
     }
+
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        return null;
+    }
 }

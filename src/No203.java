@@ -45,4 +45,30 @@ public class No203 {
 //        n1.next=n2;
         ListNode listNode = no.removeElements(n1, 1);
     }
+
+    /**
+     * 执行用时：1 ms, 在所有 Java 提交中击败了98.65% 的用户
+     * 内存消耗：39.5 MB, 在所有 Java 提交中击败了18.58% 的用户
+     * @param head
+     * @param val
+     * @return
+     */
+    public ListNode removeElements2(ListNode head, int val){
+
+        ListNode root = new ListNode(0);
+        root.next=head;
+        ListNode pre=root;
+        ListNode curr=head;
+
+        while (curr != null) {
+            if (curr.val == val) {
+                pre.next=curr.next;
+            }else{
+                pre=pre.next;
+            }
+            curr=curr.next;
+        }
+
+        return root.next;
+    }
 }

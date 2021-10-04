@@ -31,6 +31,10 @@ public class No33 {
         return -1;
     }
 
+    public int search2(int[] nums, int target) {
+        return 0;
+    }
+
     public static void main(String[] args) {
         No33 no = new No33();
         int[] arr={4,5,6,7,0,1,2};

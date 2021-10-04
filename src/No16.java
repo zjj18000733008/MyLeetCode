@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * @author JJ
  * @date 2020/8/17 - 12:52
@@ -27,6 +30,44 @@ public class No16 {
             }
         }
         return sumCloset;
+    }
+
+    /**
+     * 执行用时：5 ms, 在所有 Java 提交中击败了93.10% 的用户
+     * 内存消耗：38.2 MB, 在所有 Java 提交中击败了35.28% 的用户
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int threeSumClosest2(int[] nums, int target) {
+
+        Arrays.sort(nums);
+        int closest=nums[0]+nums[1]+nums[nums.length-1];
+
+        for (int i = 0; i < nums.length; i++) {
+            int a=nums[i];
+            int left=i+1;
+            int right=nums.length-1;
+
+            while(left<right){
+                int threeSum=a+nums[left]+nums[right];
+                closest=Math.abs(target-closest)>Math.abs(target-threeSum)?threeSum:closest;
+                if(threeSum-target<0){
+                    left++;
+                }else if(threeSum-target>0){
+                    right--;
+                }else{
+                    return threeSum;
+                }
+            }
+
+        }
+        return closest;
+    }
+
+    @Test
+    public void test(){
+        Assert.assertEquals(threeSumClosest2(new int[]{-1,2,1,-4}, 1), 2);
     }
 
     public static void main(String[] args) {
