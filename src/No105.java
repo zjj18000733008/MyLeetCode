@@ -1,5 +1,3 @@
-import sun.reflect.generics.tree.Tree;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,6 +66,13 @@ public class No105 {
 }
 
 class No105_2 {
+    /**
+     * 执行用时：10 ms, 在所有 Java 提交中击败了13.44% 的用户
+     * 内存消耗：38.4 MB, 在所有 Java 提交中击败了65.35% 的用户
+     * @param preorder
+     * @param inorder
+     * @return
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0) return null;
         return func(preorder, 0, preorder.length , inorder, 0, inorder.length );
